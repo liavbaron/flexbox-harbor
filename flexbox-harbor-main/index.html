@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מנווט הסירות - Flexbox Harbor Master</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header class="app-header">
+        <div class="logo-area">
+            <h1>⚓ מנווט הסירות (Flexbox Harbor)</h1>
+            <p class="subtitle">למדו Flexbox באמצעות ניווט סירות למעגנים שלהן!</p>
+        </div>
+        <div class="header-stats">
+            <span id="score-display">ניקוד: 0</span>
+            <button id="sound-toggle-btn" class="icon-btn" aria-label="Toggle Sound">🔊 צליל: פעיל</button>
+        </div>
+    </header>
+
+    <main class="game-layout">
+        <!-- Control Panel Section -->
+        <section class="control-panel card">
+            <div class="level-header">
+                <div class="level-progress">
+                    <span id="level-indicator">שלב 1 מתוך 10</span>
+                    <span id="attempts-count">ניסיונות בשלב זה: 0</span>
+                </div>
+                <div class="level-select-wrapper">
+                    <label for="level-select">עבור לשלב:</label>
+                    <select id="level-select"></select>
+                </div>
+            </div>
+
+            <div class="instructions-box">
+                <h2 id="level-title">כותרת השלב</h2>
+                <p id="level-instruction">הוראות השלב יופיעו כאן...</p>
+            </div>
+
+            <div class="editor-area">
+                <div class="code-preview">
+                    <code>.harbor-container {</code>
+                    <code>&nbsp;&nbsp;display: flex;</code>
+
+                    <!-- Dynamic CSS Selectors -->
+                    <div class="control-group" id="group-direction">
+                        <label for="flex-direction">flex-direction:</label>
+                        <select id="flex-direction" class="flex-control">
+                            <option value="row">row</option>
+                            <option value="row-reverse">row-reverse</option>
+                            <option value="column">column</option>
+                            <option value="column-reverse">column-reverse</option>
+                        </select>;
+                    </div>
+
+                    <div class="control-group" id="group-justify">
+                        <label for="justify-content">justify-content:</label>
+                        <select id="justify-content" class="flex-control">
+                            <option value="flex-start">flex-start</option>
+                            <option value="flex-end">flex-end</option>
+                            <option value="center">center</option>
+                            <option value="space-between">space-between</option>
+                            <option value="space-around">space-around</option>
+                            <option value="space-evenly">space-evenly</option>
+                        </select>;
+                    </div>
+
+                    <div class="control-group" id="group-align">
+                        <label for="align-items">align-items:</label>
+                        <select id="align-items" class="flex-control">
+                            <option value="flex-start">flex-start</option>
+                            <option value="flex-end">flex-end</option>
+                            <option value="center">center</option>
+                            <option value="stretch">stretch</option>
+                            <option value="baseline">baseline</option>
+                        </select>;
+                    </div>
+
+                    <div class="control-group" id="group-wrap">
+                        <label for="flex-wrap">flex-wrap:</label>
+                        <select id="flex-wrap" class="flex-control">
+                            <option value="nowrap">nowrap</option>
+                            <option value="wrap">wrap</option>
+                            <option value="wrap-reverse">wrap-reverse</option>
+                        </select>;
+                    </div>
+
+                    <code>}</code>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button id="check-btn" class="btn btn-primary">בדיקת פתרון 🚀</button>
+                <button id="reset-level-btn" class="btn btn-secondary">איפוס שלב 🔄</button>
+                <button id="reset-all-btn" class="btn btn-danger">איפוס התקדמות כללית 🗑️</button>
+            </div>
+
+            <div id="feedback-message" class="feedback hidden"></div>
+        </section>
+
+        <!-- Fixed Game Board Playground -->
+        <section class="game-stage">
+            <!-- board-scaler מקבל את הגובה/רוחב המוקטנים כדי לשמור על מבנה הדף.
+                 הלוח עצמו (fixed-board) תמיד בגודל פנימי זהה — 520x520 — כך שהפתרון עקבי בכל מסך. -->
+            <div class="board-scaler">
+                <div class="board-wrapper">
+                    <div id="game-board" class="fixed-board">
+                        <!-- Layer 1: Target Islands (Background targets) -->
+                        <div id="islands-layer" class="board-layer"></div>
+                        <!-- Layer 2: Controllable Boats (Flex Container) -->
+                        <div id="boats-layer" class="board-layer flex-container"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2>🎉 כל הכבוד! הפתרון נכון!</h2>
+            <p id="modal-text">הסירות הגיעו בהצלחה לאיים שלהן!</p>
+            <button id="next-level-btn" class="btn btn-primary">לשלב הבא ➔</button>
+        </div>
+    </div>
+
+    <script src="js/levels.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
